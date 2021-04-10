@@ -1,12 +1,7 @@
 const app = require("express")();
 const httpServer = require("http").createServer(app);
 const options = { 
-  cors: {
-    origin: "https://example.com",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true
-  }
+
  };
 const io = require("socket.io")(httpServer, options);
 

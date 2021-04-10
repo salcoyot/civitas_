@@ -24,5 +24,6 @@ io.on("connection", socket => {
 
 httpServer.listen(3000);        
 app.get('/', function (req, res) {
-    res.send('Hello World!')
+    res.send('<h1>Civitas server</h1>')
+    console.log("run server 3000")
   })

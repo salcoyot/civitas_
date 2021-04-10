@@ -9,7 +9,7 @@ io.on("connection", socket => {
   socket.send("Hello!");
 
   // or with emit() and custom event names
-  socket.emit("greetings", "Hey!", { "ms": "jane" }, Buffer.from([4, 3, 3, 1]));
+  socket.emit("message", "Hey!", { "ms": "jane" }, Buffer.from([4, 3, 3, 1]));
 
   // handle the event sent with socket.send()
   socket.on("message", (data) => {

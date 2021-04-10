@@ -8,6 +8,7 @@ const io = require("socket.io")(httpServer, options);
 app.use(cors());
 
 io.on("connection", socket => { 
+  console.log("conect");
   socket.send("Hello!");
 
   // or with emit() and custom event names

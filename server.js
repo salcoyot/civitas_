@@ -2,7 +2,10 @@ const app = require("express")();
 const httpServer = require("http").createServer(app);
 const cors = require('cors');
 const options = { 
-
+  cors: {
+    origin: "https://civitas-kechw.ondigitalocean.app/",
+    methods: ["GET", "POST"]
+  }
  };
 const io = require("socket.io")(httpServer, options);
 app.use(cors());

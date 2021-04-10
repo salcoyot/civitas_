@@ -1,9 +1,11 @@
 const app = require("express")();
 const httpServer = require("http").createServer(app);
+const cors = require('cors');
 const options = { 
 
  };
 const io = require("socket.io")(httpServer, options);
+app.use(cors());
 
 io.on("connection", socket => { 
   socket.send("Hello!");

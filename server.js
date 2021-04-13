@@ -29,10 +29,14 @@ io.on("connection", socket => {
   // handle the event sent with socket.send()
   socket.on("message", (data) => {
     console.log(data);
+    socket.emit("message", {"message":data}, Buffer.from([4, 3, 3, 1]));
   });
 
   // handle the event sent with socket.emit()
   socket.on("salutations", (elem1, elem2, elem3) => {
+    console.log(elem1, elem2, elem3);
+  });
+  socket.on("peoplemove", (elem1, elem2, elem3) => {
     console.log(elem1, elem2, elem3);
   });
 });

@@ -39,8 +39,9 @@ io.on("connection", socket => {
     console.log({"position":data.position, "user":data.user});
     socket.broadcast.emit("position", {"position":data.position, "user":data.user});
   });
+
   socket.on("newuser", (data) => {
-    console.log("position");
+    console.log("new user");
     console.log({"position":data.position, "user":data.user});
     socket.broadcast.emit("position", {"position":data.position, "user":data.user});
   });

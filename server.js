@@ -34,9 +34,9 @@ io.on("connection", socket => {
     socket.emit("message", {"message":data.message, "user":data.user});
   });
   socket.on("position", (data) => {
-    console.log(data);
+    console.log("position");
+    console.log({"position":data.position, "user":data.user});
     socket.broadcast.emit("position", {"position":data.position, "user":data.user});
-  
   });
 
   // handle the event sent with socket.emit()

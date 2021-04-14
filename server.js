@@ -21,7 +21,7 @@ app.use(cors());
 
 io.on("connection", socket => { 
   console.log("conect");
-  socket.send("Hello!");
+ /*   socket.send("Hello!");*/
 
   // or with emit() and custom event names
   socket.emit("message", "Hey!", { "ms": "jane" }, Buffer.from([4, 3, 3, 1]));
@@ -29,7 +29,7 @@ io.on("connection", socket => {
   // handle the event sent with socket.send()
   socket.on("message", (data) => {
     console.log(data);
-    socket.emit("message", {"message":data});
+    socket.broadcast.emit("message", {"message":data});
   });
 
   // handle the event sent with socket.emit()

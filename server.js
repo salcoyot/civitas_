@@ -24,13 +24,18 @@ io.on("connection", socket => {
  /*   socket.send("Hello!");*/
 
   // or with emit() and custom event names
-  socket.emit("message", { "message": "Conectado" }, "Hey!", Buffer.from([4, 3, 3, 1]));
+  socket.emit("message", { "message": "Conectado", "user":"Civitas" }, "Hey!", Buffer.from([4, 3, 3, 1]));
 
   // handle the event sent with socket.send()
   socket.on("message", (data) => {
     console.log(data);
-    socket.broadcast.emit("message", {"message":data});
-    socket.emit("message", {"message":data});
+    socket.broadcast.emit("message", {"message":data.message, "user":data.user});
+    socket.emit("message", {"message":data.message});
+  });
+  socket.on("position", (data) => {
+    console.log(data);
+    socket.broadcast.emit("position", {"position":data.position, "user":data.user});
+  
   });
 
   // handle the event sent with socket.emit()

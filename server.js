@@ -29,8 +29,9 @@ io.on("connection", socket => {
   // handle the event sent with socket.send()
   socket.on("message", (data) => {
     console.log(data);
+    console.log(data.user);
     socket.broadcast.emit("message", {"message":data.message, "user":data.user});
-    socket.emit("message", {"message":data.message});
+    socket.emit("message", {"message":data.message, "user":data.user});
   });
   socket.on("position", (data) => {
     console.log(data);

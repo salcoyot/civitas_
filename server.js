@@ -33,7 +33,13 @@ io.on("connection", socket => {
     socket.broadcast.emit("message", {"message":data.message, "user":data.user});
     socket.emit("message", {"message":data.message, "user":data.user});
   });
+  
   socket.on("position", (data) => {
+    console.log("position");
+    console.log({"position":data.position, "user":data.user});
+    socket.broadcast.emit("position", {"position":data.position, "user":data.user});
+  });
+  socket.on("newuser", (data) => {
     console.log("position");
     console.log({"position":data.position, "user":data.user});
     socket.broadcast.emit("position", {"position":data.position, "user":data.user});

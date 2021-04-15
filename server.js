@@ -28,7 +28,7 @@ io.on("connection", socket => {
   connectedUserMap.set(socket.id, { status:'online', name: 'none' }); 
   console.log("conect and map:");
   console.log(connectedUserMap);
-  socket.to(to).to(connectedUserId).emit("connectedlist", connectedUserMap);
+  socket.to(connectedUserId).emit("connectedlist", connectedUserMap);
  /*   socket.send("Hello!");*/
 
   // or with emit() and custom event names

@@ -68,7 +68,7 @@ io.on("connection", socket => {
     user.status = 'offline';
     console.log('disconect');
     console.log(user);
-    connectedUserMap.delete(user);
+    connectedUserMap.delete(connectedUserId);
    
   
   });

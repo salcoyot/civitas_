@@ -17,17 +17,20 @@ const options = {
 });
 
 let connectedUserMap = new Map();
+let disconnectedUserMap = new Map();
 
 const io = require("socket.io")(httpServer, options);
 app.use(cors());
 
 io.on("connection", socket => { 
+  
   let connectedUserId = socket.id;
   connectedUserMap.set(socket.id, { status:'online', name: 'none' }); 
   console.log("conect and map:");
   console.log(connectedUserMap);
  /*   socket.send("Hello!");*/
-
+  disconnectedUserMap = connectedUserMap.get(status==='offline');
+ console.log(disconnectedUserMap)
   // or with emit() and custom event names
   socket.emit("message", { "message": "Conectado", "user":"Civitas" }, "Hey!", Buffer.from([4, 3, 3, 1]));
 

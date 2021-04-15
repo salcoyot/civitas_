@@ -29,13 +29,7 @@ io.on("connection", socket => {
   console.log("conect and map:");
   console.log(connectedUserMap);
  /*   socket.send("Hello!");*/
-  disconnectedUserMap = connectedUserMap.filter(user => {
-    if(user.status === 'offline'){
-      return user;
-      }
-  });;
-  console.log('disconnectedUserMap: ');
-  console.log(disconnectedUserMap);
+
   // or with emit() and custom event names
   socket.emit("message", { "message": "Conectado", "user":"Civitas" }, "Hey!", Buffer.from([4, 3, 3, 1]));
 
@@ -74,6 +68,13 @@ io.on("connection", socket => {
     user.status = 'offline';
     console.log('disconect');
     console.log(user);
+      disconnectedUserMap = connectedUserMap.filter(user => {
+    if(user.status === 'offline'){
+      return user;
+      }
+  });
+    console.log('disconnectedUserMap: ');
+    console.log(disconnectedUserMap);
   
   });
   socket.on('reconect', function () {

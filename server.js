@@ -68,13 +68,7 @@ io.on("connection", socket => {
     user.status = 'offline';
     console.log('disconect');
     console.log(user);
-      disconnectedUserMap = connectedUserMap.filter(user => {
-    if(user.status === 'offline'){
-      return user;
-      }
-  });
-    console.log('disconnectedUserMap: ');
-    console.log(disconnectedUserMap);
+   
   
   });
   socket.on('reconect', function () {
@@ -83,7 +77,7 @@ io.on("connection", socket => {
     user.status = 'online';
     console.log('reconect');
     console.log(user);
-  
+    user.delete();
   });
 });
 

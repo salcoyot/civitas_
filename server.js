@@ -64,6 +64,7 @@ io.on("connection", socket => {
     //get access to the user currently being used via map.
     let user = connectedUserMap.get(connectedUserId);
     user.status = 'offline';
+    console.log('disconect');
     console.log(user);
   });
 });

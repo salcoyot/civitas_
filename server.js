@@ -25,7 +25,7 @@ io.on("connection", socket => {
   let connectedUserId = socket.id;
   connectedUserMap.set(socket.id, { status:'online', name: 'none' }); 
   console.log("conect and map:");
-  console.log(" connectedUserMap");
+  console.log(connectedUserMap);
  /*   socket.send("Hello!");*/
 
   // or with emit() and custom event names
@@ -52,11 +52,6 @@ io.on("connection", socket => {
     let user = connectedUserMap.get(connectedUserId);
     user.name = data.user;
   });
-   socket.on('disconnect', function () {
-        //get access to the user currently being used via map.
-        let user = connectedUserMap.get(connectedUserId);
-        user.status = 'offline';
-    });
 
   // handle the event sent with socket.emit()
   /* socket.on("salutations", (elem1, elem2, elem3) => {

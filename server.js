@@ -77,7 +77,7 @@ io.on("connection", socket => {
     user.status = 'online';
     console.log('reconect');
     console.log(user);
-    connectedUserMap.delete(connectedUserId);
+    connectedUserMap.delete(user);
   });
 });
 

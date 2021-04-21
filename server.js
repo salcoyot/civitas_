@@ -55,7 +55,7 @@ io.on("connection", socket => {
     user.name = data.user;
   });
 
-  socket.on("imahere", (data) => {
+  socket.on("imhere", (data) => {
     console.log("imhere")
     socket.broadcast.emit("newuser", {"position":data.position, "user":data.user, "id":data.id, "imhere":true});
   });

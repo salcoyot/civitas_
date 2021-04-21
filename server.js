@@ -26,13 +26,13 @@ io.on("connection", socket => {
   
   let connectedUserId = socket.id;
   connectedUserMap.set(socket.id, { status:'online', name: 'none' }); 
-  console.log("conect and map:");
-  console.log(connectedUserMap);
-  socket.emit("connectedlist", {"map":connectedUserMap});
+
+  
  /*   socket.send("Hello!");*/
 
   // or with emit() and custom event names
-  socket.emit("message", { "message": "Conectado", "user":"Civitas" }, "Hey!", Buffer.from([4, 3, 3, 1]));
+  socket.emit("message", { "message": "Conectado", "user":"Civitas"}, "Hey!", Buffer.from([4, 3, 3, 1]));
+  socket.emit("mesocketid", { "id":socket.id });
 
   // handle the event sent with socket.send()
   socket.on("message", (data) => {
@@ -48,14 +48,16 @@ io.on("connection", socket => {
     socket.broadcast.emit("position", {"position":data.position, "user":data.user});
   });
 
-  socket.on("newuser", (data) => {
+  socket.on("imanewuser", (data) => {
     console.log("new user");
-    console.log({"position":data.position, "user":data.user});
-    socket.broadcast.emit("newuser", {"position":data.position, "user":data.user});
+    socket.broadcast.emit("newuser", {"position":data.position, "user":data.user, "id":data.id});
     let user = connectedUserMap.get(connectedUserId);
     user.name = data.user;
   });
 
+  socket.on("imahere", (data) => {
+    socket.broadcast.emit("newuser", {"position":data.position, "user":data.user, "id":data.id, "imhere":true});
+  });
   // handle the event sent with socket.emit()
   /* socket.on("salutations", (elem1, elem2, elem3) => {
     console.log(elem1, elem2, elem3);
@@ -70,6 +72,8 @@ io.on("connection", socket => {
     console.log('disconect');
     console.log(user);
     connectedUserMap.delete(connectedUserId);
+    socket.broadcast.emit("imnothere", { "id":socket.id});
+
    
   
   });

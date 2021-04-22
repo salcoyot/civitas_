@@ -60,7 +60,7 @@ io.on("connection", socket => {
     socket.to(data.sendto).emit("newuser", {"position":data.position, "user":data.user, "id":data.id, "imhere":true});
     //socket.broadcast.emit("newuser", {"position":data.position, "user":data.user, "id":data.id, "imhere":true});
   });
-  socket.on("comunicate", (data) => {
+  socket.on("communicate", (data) => {
     console.log("communicate");
     console.log(data);
     socket.to(data.sendto).emit("newcomm", {"roomname":data.roomname, "position":data.position, "user":data.user, "id":data.id});

@@ -61,9 +61,9 @@ io.on("connection", socket => {
     //socket.broadcast.emit("newuser", {"position":data.position, "user":data.user, "id":data.id, "imhere":true});
   });
   socket.on("comunicate", (data) => {
-    console.log("imhere");
+    console.log("communicate");
     console.log(data);
-    socket.to(data.sendto).emit("newcomm", {"position":data.position, "user":data.user, "id":data.id});
+    socket.to(data.sendto).emit("newcomm", {"roomname":data.roomname, "position":data.position, "user":data.user, "id":data.id});
     //socket.broadcast.emit("newuser", {"position":data.position, "user":data.user, "id":data.id, "imhere":true});
   });
   // handle the event sent with socket.emit()
